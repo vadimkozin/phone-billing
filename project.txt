@@ -1,0 +1,37 @@
+#Проект: Телефонный биллинг
+ (только серверная часть)
+
+#Сущности (то сути таблицы в БД):
+numbers:    Телефонные номера (id, number, custid)
+customers:  Организации (id, name, inn, ...)
+directions: Направления (id, nameid, name, ...)
+tariffs:    Тарифы (id, nameid, custid, tar, ...)
+data:       Данные  (id, date, number_from, number_to, second, ...)
+itog:	    Итоги (id, year, month, custid, calls, sum_min, amount)
+log:        Логирование (id, date, message, ..)
+
+#Реализовать:
+http://api/numbers                  // все номера с привязкой к организации
+http://api/numbers/:id			    // подробно по номеру
+http://api/customers			    // все организации
+http://api/customers/:id		    // подробно по одной организации
+http://api/directions               // все направления (страны, города, ..)
+http://api/directions/:id           // подробно по одному направлению
+http://api/tariffs			        // все тарифы
+http://api/tariffs/:id			    // подробно по одному тарифу
+http://api/tariffs/customers/:custid	// тарифы для клиента (custid) на все направления
+http://api/tariffs/customers/:custid/directions/:nameid  // тариф для клиента (custid) на одно направление(nameid)
+...
+
+то есть нужно реализовать АПИ на создание, чтение, редактирование и удаление (CRUD) для :
+numbers, customers, diretions, tariffs.
+
+Данные для биллинга (data) - просто есть, поступают из внешнего источника.
+
+#Биллинг реализовать по следующему маршруту:
+POST: http://api/billing?year=xxxx&month=xx   	// биллинг за год year и месяц month
+
+#Результат биллинга:
+http://api/billing/:year/:month			// результат за year & month
+http://api/billing//:year/:month/:customer	// результат за year & month & customer
+

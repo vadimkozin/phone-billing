@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "nameid": 10,
+        "custid": 1,
+        "tar": 1.34 
+    },
+    {
+        "id": 2,
+        "nameid": 11,
+        "custid": 1,
+        "tar": 16.56 
+    },
+    {
+        "id": 3,
+        "nameid": 12,
+        "custid": 1,
+        "tar": 20.09 
+    }
+
+
+]
