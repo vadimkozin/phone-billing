@@ -1,0 +1,17 @@
+//- directions.pug : Список направлений в телефонном биллинге
+//- span= num.number
+
+extends _layout
+
+block header
+    em `directions.pug`
+    hr
+
+block content
+    h1= title
+
+    ul
+        for dir in directions
+            li
+                a(href=`/directions/${dir.id}`) 
+                    span=  dir.name

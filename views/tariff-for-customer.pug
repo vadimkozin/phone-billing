@@ -1,0 +1,20 @@
+//- tariffs-for-customer.pug : Тарифы для клиента
+//- [ { id: 1, nid: 10, cid: 1, tar: 1.34 },
+//-   { id: 2, nid: 11, cid: 1, tar: 16.56 },
+//-   { id: 3, nid: 12, cid: 1, tar: 20.09 },
+//-   { id: 4, nid: 13, cid: 1, tar: 10.01 } ] 
+
+extends _layout
+
+block header
+    em `tariffs-for-customer.pug`
+    hr
+
+block content
+    h1= title
+
+    ul
+        for tar in tariffs
+            li
+                a(href=`/tariffs/customers/${tar.cid}/directions/${tar.nid}`)
+                    span!=  `${tar.name} (${tar.tar} &#8381;)`  

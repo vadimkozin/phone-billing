@@ -1,0 +1,15 @@
+//- tariff.pug : Информация по одному тарифу
+//- { "id": 1, "nid": 10, "custid": 1, "tar": 1.34 }
+
+extends _layout
+
+block header
+    em `tariff.pug`
+    hr
+
+block content
+    br
+    em Информация по тарифу:
+    h1= title
+    div= `код направления: ${tariff.nid}`
+    div= `тариф: ${tariff.tar}`

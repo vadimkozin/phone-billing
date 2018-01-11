@@ -1,0 +1,28 @@
+//- customers.pug : Список клиентов
+
+extends _layout
+
+block header
+    em `customers.pug`
+    hr
+
+block content
+    
+    h1= title
+
+    table(border="0" cellpadding="3" cellspacing="5")
+        caption Список клиентов
+        tr
+            th клиент
+            th подробно
+            th тарифы
+        for cust in customers    
+            tr
+                td
+                    span= cust.name
+                td
+                    a(href=`/customers/${cust.id}` title="Подробно по клиенту")
+                        span (Подробно..)
+                td
+                    a(href=`/tariffs/customers/${cust.id}` title="Тарифы")
+                        span (Тарифы..)

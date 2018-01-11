@@ -1,0 +1,16 @@
+//- tariff-customer-direction.pug : Тариф для клиента на одно направление
+//- tariff = { id: 3, nid: 12, cid: 1, tar: 20.09 , name: "qwerty"}
+
+extends _layout
+
+block header
+    em `tariff-customer-direction.pug`
+    hr
+
+block content
+    h1= title
+
+    div= `код клиента:${tariff.cid}`
+    div= `направление:${tariff.name}`
+    div= `тариф:${tariff.tar}`
+    

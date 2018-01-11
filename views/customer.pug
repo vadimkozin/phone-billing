@@ -1,0 +1,16 @@
+//- customer.pug : Инфо по одному клиенту
+
+extends _layout
+
+block header
+    em `customer.pug`
+    hr
+
+block content
+    br
+    em Информация по клиенту:
+    h1= title
+    div= `код клиента:${customer.id}`
+    div= `ИНН:${customer.inn}`
+    br
+    a(href=`/tariffs/customers/${customer.id}` title='Тарифы для клиента') >>Тарифы..

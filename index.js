@@ -1,6 +1,12 @@
 const express = require('express');
-const path = require('path');
 const logger = require('morgan');
+const favicon = require('serve-favicon');
+const path = require('path');
+
+const config = require('./config');
+const { error } = require('./middleware');
+
+const routers = require('./routers');
 
 const auth = require('./middleware/auth');
 
@@ -11,21 +17,37 @@ const customerRouter = require('./routers/customer');
 const directionRouter = require('./routers/direction');
 const tariffRouter  =require('./routers/tariffs');
 
-const server = express();
+const app = express();
 
-server.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'pug');
+app.set('views', config.paths.views);
+app.set('config', config);
 
-server.use(logger('dev'));
+app.locals.version = config.version;
 
-server.use('/', mainRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/lib', express.static(config.paths.lib));
+app.use('/favicon', express.static(config.paths.favicon));
 
-//server.use(auth);
+app.use(logger('dev'));
 
-server.use('/admin', adminRouter);
-server.use('/numbers', numberRouter);
-server.use('/customers', customerRouter);
-server.use('/directions', directionRouter);
-server.use('/tariffs', tariffRouter);
+//app.use('/', mainRouter);
 
+//app.use(auth);
 
-server.listen(3000, () => console.log('Express..', 3000));
+app.use('/admin', adminRouter);
+//app.use('/numbers', numberRouter);
+//app.use('/customers', customerRouter);
+//app.use('/directions', directionRouter);
+//app.use('/tariffs', tariffRouter);
+
+app.use('/', routers.x_main);
+app.use('/numbers', routers.x_number);
+app.use('/customers', routers.x_customer);
+app.use('/directions', routers.x_direction);
+app.use('/tariffs', routers.x_tariff);
+
+app.use(error.notFound);
+app.use(app.get('env') === 'development' ? error.development : error.production);
+
+app.listen(3000, () => console.log('Express..', 3000));

@@ -1,0 +1,15 @@
+//- direction.pug : Информация по одному направлению
+//- {"id": 1,"nid": 10, "name" : "Россия", "code": "7"}
+
+extends _layout
+
+block header
+    em `direction.pug`
+    hr
+
+block content
+    br
+    em Информация по направлению:
+    h1= title
+    div= `код направления: ${direction.nid}`
+    div= `телефонный код(ы): ${direction.code}`

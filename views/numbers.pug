@@ -1,0 +1,18 @@
+//- numbers.pug : Список телефонных номеров
+//- li= `${num.number} (cid: ${num.cid} ) (id:${num.id})`
+//- span= num.number
+
+extends _layout
+
+block header
+    em `numbers.pug`
+    hr
+
+block content
+    h1= title
+
+    ul
+        for num in numbers
+            li
+                a(href=`/numbers/${num.id}`) 
+                    span=  num.number
