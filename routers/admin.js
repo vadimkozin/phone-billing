@@ -1,10 +1,7 @@
-const { Router } = require('express');
+const router = require('express').Router();
 
-const router = Router();
+const { admin: { showAdmin } } = require('../controllers');
 
-// GET /admin
-router.get('/', (req, res) => {
-    res.send('Admin');
-});
+router.get('/', showAdmin);
 
 module.exports = router;

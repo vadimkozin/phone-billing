@@ -5,17 +5,9 @@ const path = require('path');
 
 const config = require('./config');
 const { error } = require('./middleware');
-
-const routers = require('./routers');
-
 const auth = require('./middleware/auth');
 
-const mainRouter = require('./routers/main');
-const adminRouter = require('./routers/admin');
-const numberRouter = require('./routers/number');
-const customerRouter = require('./routers/customer');
-const directionRouter = require('./routers/direction');
-const tariffRouter  =require('./routers/tariffs');
+const routers = require('./routers');
 
 const app = express();
 
@@ -31,23 +23,15 @@ app.use('/favicon', express.static(config.paths.favicon));
 
 app.use(logger('dev'));
 
-//app.use('/', mainRouter);
-
+app.use('/', routers.main);
 //app.use(auth);
-
-app.use('/admin', adminRouter);
-//app.use('/numbers', numberRouter);
-//app.use('/customers', customerRouter);
-//app.use('/directions', directionRouter);
-//app.use('/tariffs', tariffRouter);
-
-app.use('/', routers.x_main);
-app.use('/numbers', routers.x_number);
-app.use('/customers', routers.x_customer);
-app.use('/directions', routers.x_direction);
-app.use('/tariffs', routers.x_tariff);
+app.use('/admin', routers.admin);
+app.use('/numbers', routers.number);
+app.use('/customers', routers.customer);
+app.use('/directions', routers.direction);
+app.use('/tariffs', routers.tariff);
 
 app.use(error.notFound);
 app.use(app.get('env') === 'development' ? error.development : error.production);
 
-app.listen(3000, () => console.log('Express..', 3000));
+app.listen(config.port, () => console.log('Express:', config.port));

@@ -1,12 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
-let index = path.basename(__filename);
-let files = fs.readdirSync(__dirname);
-
-for (let file of files) {
-    if (file !== index) {
-        let name = path.basename(file, '.js');
-        module.exports[name] = require(`./${file}`);
-    }
+for (let file of require('../common/lib').getFilesInDirectory(__dirname)) {
+    module.exports[file] = require(`./${file}`);
 }

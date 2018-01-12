@@ -1,15 +1,7 @@
-const { Router } = require('express');
+const router = require('express').Router();
 
-const router = Router();
+const { main: { showMain } } = require('../controllers');
 
-// GET /
-router.get('/', (req, res) => {
-    res.send('Hello Express');
-});
-
-// GET /about
-router.get('/about', (req, res) => {
-    res.send('About');
-});
+router.get('/', showMain);
 
 module.exports = router;

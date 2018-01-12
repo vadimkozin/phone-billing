@@ -13,6 +13,7 @@ log:        Логирование (id, date, message, ..)
 #Реализовать:
 http://api/numbers                  // все номера с привязкой к организации
 http://api/numbers/:id			    // подробно по номеру
+http://api/numbers/customers/:id	// все номера для клиента
 http://api/customers			    // все организации
 http://api/customers/:id		    // подробно по одной организации
 http://api/directions               // все направления (страны, города, ..)

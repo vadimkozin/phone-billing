@@ -13,4 +13,6 @@ block content
     div= `код клиента:${customer.id}`
     div= `ИНН:${customer.inn}`
     br
-    a(href=`/tariffs/customers/${customer.id}` title='Тарифы для клиента') >>Тарифы..
+    a(href=`/tariffs/customers/${customer.id}` title='Тарифы..') >>Тарифы..
+    br
+    a(href=`/numbers/customers/${customer.id}` title="Номера..") >>Номера..

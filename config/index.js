@@ -1,10 +1,3 @@
-module.exports = {
-    auth: {
-        login: 'admin',
-        password: '12345'
-    }
-};
-
 'use srtict';
 
 const path = require('path');

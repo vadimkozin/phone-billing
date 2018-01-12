@@ -1,4 +1,5 @@
 const numbers = require('../data/numbers');
+const customer = require('./customer');
 
 module.exports = {
     // GET /numbers - все номера
@@ -32,29 +33,21 @@ module.exports = {
 
             next();
         }
-    
     },
 
+    // GET /numbers/customers/1 - возвращает все номера для клиента с кодом 1
+    showNumbersForCustomer(req, res) {
+        let cid = req.params.cid;
+        let numbersForCustomer = numbers.filter(n => n.cid == cid);
+        console.log('cid:', cid, numbersForCustomer);
+        //res.send(numbersForCustomer);
+
+        res.render('numbers', {
+            id: 'numbers',
+            title: `Список номеров для: ${customer.getNameByCid(cid)} (${cid})`,
+            numbers: numbersForCustomer
+        });
+
+
+    }
 };
-
-/*
-const router = express.Router();
-
-// GET /numbers - все номера
-router.get('/', (req, res) => {
-    res.send(numbers);
-});
-
-// GET /numbers/1 - номер с кодом 1
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    let number = numbers.find(n => n.id == id);
-    let message = (number != undefined)
-        ? number 
-        : `Номер c id:${id} НЕ найден`;
- 
-    res.send(message);
-});
-
-module.exports = router;
-*/

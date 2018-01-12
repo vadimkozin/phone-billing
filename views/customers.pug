@@ -16,13 +16,18 @@ block content
             th клиент
             th подробно
             th тарифы
+            th номера
         for cust in customers    
             tr
                 td
                     span= cust.name
                 td
                     a(href=`/customers/${cust.id}` title="Подробно по клиенту")
-                        span (Подробно..)
+                        span (подробно..)
                 td
                     a(href=`/tariffs/customers/${cust.id}` title="Тарифы")
-                        span (Тарифы..)
+                        span (тарифы..)
+                td
+                    a(href=`/numbers/customers/${cust.id}` title="Номера")
+                        span (номера..)
+                        

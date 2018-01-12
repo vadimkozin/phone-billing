@@ -1,5 +1,12 @@
 const customers = require('../data/customers');
 
+// для быстрого отображения кода(nid) на название(name) для клиентов
+const mapCustomerName = new Map();
+for (let cust of customers) {
+    mapCustomerName.set(Number(cust.id), cust.name);
+}
+mapCustomerName.forEach((v,k) => console.log(k,'=>', v));
+
 module.exports = {
     // GET /customers - все клиенты
     showCustomers(req, res) {
@@ -14,8 +21,6 @@ module.exports = {
         let id = req.params.id;
         let cust = customers.find(n => n.id == id);
 
-        console.log('cust::',cust, 'id:', id);
-
         if (!cust) {
             let error = new Error(`Организация c id:${id} НЕ найдена`);
             error.status = 404;
@@ -28,7 +33,7 @@ module.exports = {
     
     },
 
-    // GET /customers/1 - клиент с уникальным кодом
+    // GET /customers/1 - клиент с уникальным кодом 1
     showCustomerById(req, res) {
         res.render('customer', {
             id: 'customer',
@@ -37,23 +42,14 @@ module.exports = {
         });      
     },
 
-    // возвращает имя клиента по его коду
+    // возвращает название клиента по его коду
+    // getNameByCid(id) {
+    //     let cust = customers.find(cust => cust.id == id);
+    //     return cust ? cust.name : '-';
+    // }
+
     getNameByCid(id) {
-        let cust = customers.find(cust => cust.id == id);
-        return cust ? cust.name : '-';
+        let name = mapCustomerName.get(Number(id));
+        return name ? name : '-';
     }
-
 };
-
-/*
-// GET /customers/1 - клиент с уникальным кодом
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    let cust = customers.find(n => n.id == id);
-    let message = (cust != undefined)
-        ? cust 
-        : `Организация c id:${id} НЕ найдена`;
- 
-    res.send(message);
-});
-*/

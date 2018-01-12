@@ -1,6 +1,14 @@
 const directions = require('../data/directions');
 
+// для быстрого отображения кода(nid) на название(name) для направлений
+const mapDirectionName = new Map();
+for (let dir of directions) {
+    mapDirectionName.set(Number(dir.nid), dir.name);
+}
+mapDirectionName.forEach((v,k) => console.log(k,'=>', v));
+
 module.exports = {
+
     // GET /directions - все направления
     showDirections(req, res) {
         res.render('directions', {
@@ -35,32 +43,15 @@ module.exports = {
     },
 
     // Возвращает имя направления по коду nid
+    // getNameDirectionByNid(nid) {
+    //     let dir = directions.find(dir => dir.nid == nid );
+    //     return dir ? dir.name : '-';
+    // }
+
+    // Возвращает имя направления по коду nid
     getNameDirectionByNid(nid) {
-        let dir = directions.find(dir => dir.nid == nid );
-        return dir ? dir.name : '-';
+        let name = mapDirectionName.get(Number(nid));
+        return name ? name : '-';
     }
+
 };
-
-/*
-const express = require('express');
-
-const router = express.Router();
-
-// GET /directions - все направления
-router.get('/', (req, res) => {
-    res.send(directions);
-});
-
-// GET /directions/1 - направление с кодом 1
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    let dir = directions.find(n => n.id == id);
-    let message = (dir != undefined)
-        ? dir 
-        : `Направление c id:${id} НЕ найдено`;
- 
-    res.send(message);
-});
-
-module.exports = router;
-*/
