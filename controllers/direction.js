@@ -5,7 +5,7 @@ const mapDirectionName = new Map();
 for (let dir of directions) {
     mapDirectionName.set(Number(dir.nid), dir.name);
 }
-mapDirectionName.forEach((v,k) => console.log(k,'=>', v));
+// mapDirectionName.forEach((v,k) => console.log(k,'=>', v));
 
 module.exports = {
 

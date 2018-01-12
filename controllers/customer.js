@@ -5,7 +5,7 @@ const mapCustomerName = new Map();
 for (let cust of customers) {
     mapCustomerName.set(Number(cust.id), cust.name);
 }
-mapCustomerName.forEach((v,k) => console.log(k,'=>', v));
+// mapCustomerName.forEach((v,k) => console.log(k,'=>', v));
 
 module.exports = {
     // GET /customers - все клиенты
