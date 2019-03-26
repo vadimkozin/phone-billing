@@ -11,9 +11,15 @@ module.exports = {
         favicon: path.resolve(__dirname, '..', 'public', 'favicon.ico'),
         lib: path.resolve(__dirname, '..', 'node_modules')
     },
-    auth: {
+    auth_test: {
         login: 'admin',
         password: '12345'
+    },
+    auth: {
+        host: process.env.HOST || 'localhost',
+        base: process.env.BASE,
+        login: process.env.LOGIN,
+        password: process.env.PASSWORD
     }
 
 };

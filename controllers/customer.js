@@ -1,6 +1,6 @@
 const customers = require('../data/customers');
 
-// для быстрого отображения кода(nid) на название(name) для клиентов
+// для быстрого отображения кода(id) на название(name) для клиентов
 const mapCustomerName = new Map();
 for (let cust of customers) {
     mapCustomerName.set(Number(cust.id), cust.name);
